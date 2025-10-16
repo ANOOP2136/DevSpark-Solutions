@@ -48,6 +48,7 @@
       padding: 18px 0;
       z-index: 1000;
       border-bottom: 1px solid var(--border-light);
+      transition: all 0.3s;
     }
 
     .nav-container {
@@ -74,6 +75,10 @@
       font-weight: 500;
       position: relative;
       padding: 6px 0;
+    }
+
+    .nav-links a:hover {
+      color: var(--sky-blue);
     }
 
     .nav-links a::after {
@@ -115,6 +120,18 @@
       box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
     }
 
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--sky-blue);
+      color: var(--sky-blue);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--light-blue);
+      transform: translateY(-2px);
+    }
+
     /* ===== SECTIONS ===== */
     section {
       padding: 100px 0;
@@ -124,7 +141,6 @@
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: 20px;
-      position: relative;
     }
 
     .section-subtitle {
@@ -199,7 +215,7 @@
       margin-bottom: 16px;
     }
 
-    /* ===== PROCESS TIMELINE ===== */
+    /* ===== TIMELINE ===== */
     .timeline {
       display: flex;
       justify-content: center;
@@ -288,6 +304,127 @@
       color: var(--deep-blue);
     }
 
+    /* ===== PROJECTS GRID ===== */
+    #projects-grid-section {
+      background-color: var(--white);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(30, 58, 138, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid var(--border-light);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(30, 58, 138, 0.15);
+    }
+
+    .project-image {
+      height: 200px;
+      background: linear-gradient(135deg, var(--light-blue), #dbeafe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--deep-blue);
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+
+    .project-content {
+      padding: 28px;
+    }
+
+    .project-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .project-meta {
+      display: flex;
+      gap: 12px;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: var(--light-blue);
+      color: var(--deep-blue);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* ===== CASE STUDY VIEW (HIDDEN BY DEFAULT) ===== */
+    .case-study {
+      display: none;
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .case-study-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .case-study-header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+    }
+
+    .case-study-content {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .case-study-content h2 {
+      margin: 40px 0 20px;
+      font-size: 1.8rem;
+      color: var(--deep-blue);
+    }
+
+    .case-study-content p {
+      margin-bottom: 24px;
+      color: #374151;
+    }
+
+    .case-study-image-placeholder {
+      height: 300px;
+      background: var(--light-blue);
+      border-radius: 16px;
+      margin: 40px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--deep-blue);
+      font-weight: 600;
+    }
+
+    .back-to-projects {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--sky-blue);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+
+    .back-to-projects:hover {
+      text-decoration: underline;
+    }
+
     /* ===== CTA SECTION ===== */
     .cta-section {
       text-align: center;
@@ -327,36 +464,22 @@
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.5rem; }
       .section-title { font-size: 2rem; }
-      .nav-links { display: none; } /* Simplified for demo */
+      .nav-links { display: none; }
       .timeline::before { display: none; }
-      .timeline { gap: 24px; }
-    }
-
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .animate {
-      opacity: 0;
-    }
-
-    .animate.appear {
-      animation: fadeInUp 0.8s ease forwards;
+      .project-image { height: 160px; font-size: 1.1rem; }
+      .case-study-header h1 { font-size: 2.2rem; }
     }
   </style>
 </head>
 <body>
 
   <!-- Navigation -->
-  <nav>
+  <nav id="main-nav">
     <div class="container nav-container">
       <div class="logo">DevSpark</div>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#process">Process</a></li>
+        <li><a href="#projects-grid-section">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -374,31 +497,31 @@
   <!-- What We Do -->
   <section id="services" class="section">
     <div class="container">
-      <h2 class="section-title animate">What We Do</h2>
-      <p class="section-subtitle animate">End-to-end mobile solutions designed for growth and user delight.</p>
+      <h2 class="section-title">What We Do</h2>
+      <p class="section-subtitle">End-to-end mobile solutions designed for growth and user delight.</p>
       <div class="cards-grid">
-        <div class="card animate">
+        <div class="card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              <path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <h3>Custom Mobile Apps</h3>
           <p>iOS & Android apps built with clean architecture, scalability, and performance.</p>
         </div>
-        <div class="card animate">
+        <div class="card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h10a2 2 0 002-2v-4a2 2 0 00-2-2h-2m-4 0H9m10-6a2 2 0 11-4 0m4 0v4a2 2 0 11-4 0V7" />
+              <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h10a2 2 0 002-2v-4a2 2 0 00-2-2h-2m-4 0H9m10-6a2 2 0 11-4 0m4 0v4a2 2 0 11-4 0V7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <h3>UI/UX Design</h3>
           <p>Intuitive, accessible, and beautiful interfaces that users love from day one.</p>
         </div>
-        <div class="card animate">
+        <div class="card">
           <div class="card-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <h3>On-Time Delivery</h3>
@@ -411,18 +534,18 @@
   <!-- Why DevSpark -->
   <section class="section" style="background-color: var(--light-blue);">
     <div class="container">
-      <h2 class="section-title animate">Why DevSpark?</h2>
-      <p class="section-subtitle animate">We blend engineering rigor with creative problem-solving.</p>
+      <h2 class="section-title">Why DevSpark?</h2>
+      <p class="section-subtitle">We blend engineering rigor with creative problem-solving.</p>
       <div class="cards-grid">
-        <div class="card animate" style="border: 2px solid var(--sky-blue);">
+        <div class="card" style="border: 2px solid var(--sky-blue);">
           <h3>Tailored Solutions</h3>
           <p>No off-the-shelf templates. Every line of code serves your unique vision.</p>
         </div>
-        <div class="card animate" style="border: 2px solid var(--sky-blue);">
+        <div class="card" style="border: 2px solid var(--sky-blue);">
           <h3>Reliable Partnership</h3>
           <p>Transparent communication, weekly demos, and shared ownership of success.</p>
         </div>
-        <div class="card animate" style="border: 2px solid var(--sky-blue);">
+        <div class="card" style="border: 2px solid var(--sky-blue);">
           <h3>Design-First Mindset</h3>
           <p>We prototype before we code — because great apps start with great design.</p>
         </div>
@@ -433,25 +556,25 @@
   <!-- Process -->
   <section id="process" class="section">
     <div class="container">
-      <h2 class="section-title animate">Our Process</h2>
-      <p class="section-subtitle animate">Simple, collaborative, and effective.</p>
+      <h2 class="section-title">Our Process</h2>
+      <p class="section-subtitle">Simple, collaborative, and effective.</p>
       <div class="timeline">
-        <div class="timeline-item animate">
+        <div class="timeline-item">
           <div class="step-number">1</div>
           <h3>Plan</h3>
           <p>Discover, define, and align on goals.</p>
         </div>
-        <div class="timeline-item animate">
+        <div class="timeline-item">
           <div class="step-number">2</div>
           <h3>Design</h3>
           <p>Wireframe, prototype, and refine.</p>
         </div>
-        <div class="timeline-item animate">
+        <div class="timeline-item">
           <div class="step-number">3</div>
           <h3>Build</h3>
           <p>Develop with clean, testable code.</p>
         </div>
-        <div class="timeline-item animate">
+        <div class="timeline-item">
           <div class="step-number">4</div>
           <h3>Deliver</h3>
           <p>Launch, monitor, and support.</p>
@@ -463,8 +586,8 @@
   <!-- Testimonials -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title animate">Client Love</h2>
-      <div class="testimonial animate">
+      <h2 class="section-title">Client Love</h2>
+      <div class="testimonial">
         <blockquote>
           DevSpark transformed our idea into a market-ready app in just 12 weeks. Their attention to detail and user-centric approach exceeded all expectations.
         </blockquote>
@@ -473,49 +596,207 @@
     </div>
   </section>
 
+  <!-- PROJECTS GRID SECTION -->
+  <section id="projects-grid-section" class="section">
+    <div class="container">
+      <h2 class="section-title">Our Projects</h2>
+      <p class="section-subtitle">A glimpse into the mobile experiences we’ve crafted for innovative businesses.</p>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">FlowMetrics</div>
+          <div class="project-content">
+            <h3>FlowMetrics Dashboard</h3>
+            <p>Real-time analytics for SaaS teams with live data visualization.</p>
+            <div class="project-meta">
+              <span class="tag">React Native</span>
+              <span class="tag">UI/UX Design</span>
+            </div>
+            <button class="btn view-case-study" data-project="flowmetrics">View Case Study</button>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">NutriTrack</div>
+          <div class="project-content">
+            <h3>NutriTrack</h3>
+            <p>AI-powered nutrition planner with barcode scanning and meal suggestions.</p>
+            <div class="project-meta">
+              <span class="tag">Flutter</span>
+              <span class="tag">ML Kit</span>
+            </div>
+            <button class="btn view-case-study" data-project="nutritrack">View Case Study</button>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">TaskPulse</div>
+          <div class="project-content">
+            <h3>TaskPulse</h3>
+            <p>Collaborative task manager for remote teams with real-time sync.</p>
+            <div class="project-meta">
+              <span class="tag">Swift</span>
+              <span class="tag">Kotlin</span>
+            </div>
+            <button class="btn view-case-study" data-project="taskpulse">View Case Study</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY VIEWS (HIDDEN BY DEFAULT) -->
+  <!-- FlowMetrics Case Study -->
+  <section id="case-flowmetrics" class="case-study">
+    <div class="container">
+      <div class="case-study-header">
+        <h1>FlowMetrics Dashboard</h1>
+        <p>Real-time analytics for modern SaaS teams</p>
+        <a href="#projects-grid-section" class="back-to-projects" onclick="showProjects()">← Back to Projects</a>
+      </div>
+      <div class="case-study-content">
+        <p>FlowMetrics helps product teams track user engagement, feature adoption, and retention in real time. Our challenge was to deliver a mobile experience that mirrored the power of their web dashboard — without overwhelming users.</p>
+        
+        <h2>The Solution</h2>
+        <p>We designed a mobile-first interface with collapsible data panels, smart filtering, and offline caching. Using React Native, we ensured 60fps performance even with complex visualizations.</p>
+        
+        <div class="case-study-image-placeholder">App Screenshots (Placeholder)</div>
+        
+        <h2>Results</h2>
+        <p>Launched in 10 weeks. Achieved 4.8★ on App Store with 92% user retention at 30 days.</p>
+        
+        <a href="#projects-grid-section" class="btn btn-outline" onclick="showProjects()">← Back to Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NutriTrack Case Study -->
+  <section id="case-nutritrack" class="case-study">
+    <div class="container">
+      <div class="case-study-header">
+        <h1>NutriTrack</h1>
+        <p>Personalized nutrition made simple</p>
+        <a href="#projects-grid-section" class="back-to-projects" onclick="showProjects()">← Back to Projects</a>
+      </div>
+      <div class="case-study-content">
+        <p>NutriTrack empowers users to log meals, scan barcodes, and receive AI-driven nutrition advice. The client needed an app that felt both scientific and approachable.</p>
+        
+        <h2>Our Approach</h2>
+        <p>We built a Flutter app integrated with Google’s ML Kit for barcode recognition and a custom nutrition API. The UI uses calming blues and clean typography to reduce cognitive load during meal logging.</p>
+        
+        <div class="case-study-image-placeholder">App Screenshots (Placeholder)</div>
+        
+        <h2>Impact</h2>
+        <p>Reduced user onboarding time by 65%. Featured in “Health Apps of the Month” by TechWell.</p>
+        
+        <a href="#projects-grid-section" class="btn btn-outline" onclick="showProjects()">← Back to Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TaskPulse Case Study -->
+  <section id="case-taskpulse" class="case-study">
+    <div class="container">
+      <div class="case-study-header">
+        <h1>TaskPulse</h1>
+        <p>Team productivity, reimagined</p>
+        <a href="#projects-grid-section" class="back-to-projects" onclick="showProjects()">← Back to Projects</a>
+      </div>
+      <div class="case-study-content">
+        <p>TaskPulse helps remote teams stay aligned with voice notes, priority tagging, and real-time task updates. The client wanted a native experience on both iOS and Android.</p>
+        
+        <h2>Execution</h2>
+        <p>We developed parallel native apps (Swift for iOS, Kotlin for Android) with a shared WebSocket backend. Voice notes are transcribed in real time using on-device speech recognition for privacy.</p>
+        
+        <div class="case-study-image-placeholder">App Screenshots (Placeholder)</div>
+        
+        <h2>Outcome</h2>
+        <p>Delivered in 12 weeks. Adopted by 30+ remote-first companies within 2 months of launch.</p>
+        
+        <a href="#projects-grid-section" class="btn btn-outline" onclick="showProjects()">← Back to Projects</a>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section id="contact" class="cta-section section">
     <div class="container">
-      <h2 class="section-title animate">Ready to Ignite Your Idea?</h2>
-      <p class="section-subtitle animate">Let’s build something remarkable together.</p>
-      <a href="mailto:hello@devsparksolutions.com" class="btn">Start Your Project</a>
+      <h2 class="section-title">Ready to Ignite Your Idea?</h2>
+      <p class="section-subtitle">Let’s build something remarkable together.</p>
+      <a href="mailto:devsparksoltions@gmail.com" class="btn">Start Your Project</a>
     </div>
   </section>
 
   <!-- Floating CTA -->
   <a href="#contact" class="floating-cta">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+      <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </a>
 
-  <!-- Scroll Animation -->
   <script>
-    // Simple scroll animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('appear');
+    // Show case study
+    function showCaseStudy(projectId) {
+      // Hide all sections except case study
+      document.querySelectorAll('section').forEach(section => {
+        if (!section.classList.contains('case-study')) {
+          section.style.display = 'none';
         }
       });
-    }, { threshold: 0.1 });
+      // Show selected case study
+      document.getElementById('case-' + projectId).style.display = 'block';
+      // Update URL hash
+      window.history.pushState(null, '', '#case-' + projectId);
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
 
-    document.querySelectorAll('.animate').forEach(el => {
-      observer.observe(el);
+    // Show projects grid
+    function showProjects() {
+      document.querySelectorAll('section').forEach(section => {
+        if (section.id === 'projects-grid-section' || 
+            section.id === 'home' || 
+            section.id === 'services' ||
+            section.id === 'process' ||
+            section.classList.contains('testimonial') ||
+            section.id === 'contact') {
+          section.style.display = 'block';
+        } else if (section.classList.contains('case-study')) {
+          section.style.display = 'none';
+        }
+      });
+      window.history.pushState(null, '', '#projects-grid-section');
+    }
+
+    // Attach event listeners
+    document.querySelectorAll('.view-case-study').forEach(button => {
+      button.addEventListener('click', () => {
+        const project = button.getAttribute('data-project');
+        showCaseStudy(project);
+      });
     });
 
-    // Smooth scroll
+    // Handle back button (browser)
+    window.addEventListener('popstate', () => {
+      if (window.location.hash.startsWith('#case-')) {
+        const projectId = window.location.hash.replace('#case-', '');
+        showCaseStudy(projectId);
+      } else {
+        showProjects();
+      }
+    });
+
+    // Smooth scroll for main nav
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
+      if (!anchor.classList.contains('view-case-study') && !anchor.classList.contains('back-to-projects')) {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      }
     });
   </script>
 
